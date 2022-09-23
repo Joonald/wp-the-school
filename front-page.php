@@ -49,7 +49,27 @@ get_header();
 
 		endif;
 		?>
-
+		<section class='blog-post'>
+		<h2> <?php esc_html_e('Recent News', 'wp-the-school');?> </h2>
+			<?php $args = array(
+				'post_type' 	=> 'post',
+				'post_per_page' => 3,
+			);
+			$blog_query = new WP_QUERY( $args );
+			if ( $blog_query -> have_posts() ) {
+				while ( $blog_query -> have_posts() ) {
+					$blog_query -> the_post();
+				?>
+				<article>
+					<a href="<?php the_permalink() ?>">
+					<?php the_post_thumbnail('wide-blog'); ?>
+						<h3><?php the_title() ?></h3>
+					</a>
+				</article>
+			<?php }; 
+			wp_reset_postdata(); 
+			}; ?>
+		</section>
 	</main><!-- #main -->
 
 <?php

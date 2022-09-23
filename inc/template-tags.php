@@ -136,7 +136,7 @@ if ( ! function_exists( 'wp_the_school_post_thumbnail' ) ) :
 			<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
 				<?php
 					the_post_thumbnail(
-						'post-thumbnail',
+						'large',
 						array(
 							'alt' => the_title_attribute(
 								array(

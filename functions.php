@@ -45,7 +45,8 @@ function wp_the_school_setup() {
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
 	add_theme_support( 'post-thumbnails' );
-
+	// custom image crip sizes
+	add_image_size( 'wide-blog', 400, 200, true );
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
@@ -99,6 +100,15 @@ function wp_the_school_setup() {
 			'flex-height' => true,
 		)
 	);
+
+	// adding default wp block styles
+	add_theme_support( 'wp-block-styles' );
+	
+	// adding support for wide allignment
+	add_theme_support( 'align-wide' );
+
+	// adding support for full allignment
+	add_theme_support( 'align-full' );
 }
 add_action( 'after_setup_theme', 'wp_the_school_setup' );
 
@@ -175,4 +185,11 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+function wp_the_school_excerpt ( $length ) {
+	return 20;
+} add_filter('excerpt_length', 'wp_the_school_excerpt', 999);
 
+/**
+ * Custom Post Types and Taxonomies
+ */
+require get_template_directory() . '/inc/cpt-taxonomy.php';
