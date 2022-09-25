@@ -41,6 +41,45 @@ function wp_the_school_register_custom_post_type() {
 
     register_post_type( 'wps-staff', $args );
     
+    // Student CPT Block Editor - p block and button - tempalte lock all
+    $labels = array(
+        'name'               => _x( 'Students', 'post type general name'  ),
+        'singular_name'      => _x( 'Student', 'post type singular name'  ),
+        'menu_name'          => _x( 'Student', 'admin menu'  ),
+        'name_admin_bar'     => _x( 'Student', 'add new on admin bar' ),
+        'add_new'            => _x( 'Add New', 'Student' ),
+        'add_new_item'       => __( 'Add New Student' ),
+        'new_item'           => __( 'New Student' ),
+        'edit_item'          => __( 'Edit Students' ),
+        'view_item'          => __( 'View Students'  ),
+        'all_items'          => __( 'All Students' ),
+        'search_items'       => __( 'Search Students' ),
+        'parent_item_colon'  => __( 'Parent Students' ),
+        'not_found'          => __( 'No students found.' ),
+        'not_found_in_trash' => __( 'No students in Trash.' ),
+    );
+    
+    $argss = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'show_in_nav_menus'  => true,
+        'show_in_rest'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'student' ),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 5,
+        'menu_icon'          => 'dashicons-universal-access',
+        'supports'           => array( 'title', 'editor'),
+        'template'           => array( array( 'core/paragraph' ), array( 'core/buttons') ),
+        'template_lock'      => 'all',
+    );
+
+    register_post_type( 'wps-student', $argss );
 }
 add_action( 'init', 'wp_the_school_register_custom_post_type' );
 
