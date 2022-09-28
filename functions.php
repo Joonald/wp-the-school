@@ -214,3 +214,5 @@ function wp_the_school_excerpt_more( $more ) {
  * Custom Post Types and Taxonomies
  */
 require get_template_directory() . '/inc/cpt-taxonomy.php';
+
+add_filter( 'get_the_archive_title_prefix', '__return_false' );
