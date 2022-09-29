@@ -46,7 +46,7 @@ function wp_the_school_setup() {
 		*/
 	add_theme_support( 'post-thumbnails' );
 	// custom image crip sizes
-	add_image_size( 'wide-blog', 400, 200, true );
+	add_image_size( 'tall-blog', 200, 300, true );
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
@@ -185,11 +185,34 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+/**
+ * changing excerpt length to 35
+ */
 function wp_the_school_excerpt ( $length ) {
-	return 20;
+	if ( is_post_type_archive( 'wps-student' ) ) {
+		return 25;
+	} else {
+		return 35;
+	}
 } add_filter('excerpt_length', 'wp_the_school_excerpt', 999);
+
+/**
+ * adding link to end of excerpt
+ */
+function wp_the_school_excerpt_more( $more ) {
+	if ( is_post_type_archive( 'wps-student' ) ) {
+		$more = '<br><a href="' . esc_url( get_permalink() ) .'">' . __( 'Read More about the Student', 'wp-the-school' ) . '</a>';
+		return $more;
+	} else { 
+		$more = '... <a href="' . esc_url( get_permalink() ) . '">' . __( 'Continue Reading', 'wps-the-school' ) . '</a>';
+    	return $more;
+	}
+} add_filter( 'excerpt_more', 'wp_the_school_excerpt_more' );
 
 /**
  * Custom Post Types and Taxonomies
  */
 require get_template_directory() . '/inc/cpt-taxonomy.php';
+
+add_filter( 'get_the_archive_title_prefix', '__return_false' );
