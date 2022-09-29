@@ -27,11 +27,12 @@
 		$args = array(
 			'post_type' 		=> 'wps-student',
 			'posts_per_page'	=> -1,
+			'post__not_in'		=> array( $post-> ID ),
 			'tax_query'			=> array(
 				array(
 					'taxonomy'	=> 'wps-student-specialty',
 					'field'		=> 'slug',
-					'terms'		=> $term,
+					'terms'		=> $term[0],
 				)
 			)
 		);
