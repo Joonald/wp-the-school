@@ -46,7 +46,7 @@ function wp_the_school_setup() {
 		*/
 	add_theme_support( 'post-thumbnails' );
 	// custom image crip sizes
-	add_image_size( 'wide-blog', 400, 200, true );
+	add_image_size( 'tall-blog', 200, 300, true );
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(

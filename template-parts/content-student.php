@@ -1,6 +1,6 @@
 <?php
 /**
- * Template part for displaying page content in page.php
+ * Template part for displaying posts
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -10,34 +10,45 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<header class="entry-header">
+		<?php
+			the_title( '<h1 class="entry-title">', '</h1>' );
+		?>
+	</header><!-- .entry-header -->
+
+	<?php the_post_thumbnail(); ?>
 
 	<div class="entry-content">
 		<?php
 		the_content();
+	
+		$term = get_the_terms( $post->ID, 'wps-student-specialty' );
 
-		?>
-		<?php 
-				$args = array(
-					'post_type' 		=> 'wps-student',
-					'posts_per_page'	=> -1,
-				);
-			
-			$query = new WP_Query( $args );
-			if ( $query -> have_posts() ) {
+		$args = array(
+			'post_type' 		=> 'wps-student',
+			'posts_per_page'	=> -1,
+			'tax_query'			=> array(
+				array(
+					'taxonomy'	=> 'wps-student-specialty',
+					'field'		=> 'slug',
+					'terms'		=> $term,
+				)
+			)
+		);
+
+		$query = new WP_Query( $args );
+		if ($query -> have_posts() ) {
 			while ( $query -> have_posts() ) {
 				$query -> the_post();
-			
-			?> <section>
-					<h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
-				<?php			
-					}
-					?>
-				</section>
-		<?php 
+				?>
+				<a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+				<?php
 			}
+		}
+		
 		?>
-			</section>
 	</div><!-- .entry-content -->
 
-		
+	<footer class="entry-footer">
+	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
