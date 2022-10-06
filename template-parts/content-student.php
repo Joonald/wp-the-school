@@ -39,14 +39,19 @@
 
 		$query = new WP_Query( $args );
 		if ($query -> have_posts() ) {
+			?> 
+			<aside> 
+			<h3>Meet other Developer Students</h3>
+			<?php
 			while ( $query -> have_posts() ) {
 				$query -> the_post();
 				?>
-				<a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+				<p><a href="<?php the_permalink() ?>"><?php the_title() ?></a></p>
 				<?php
 			}
-		}
-		
+			?>	
+			</aside>
+		<?php }
 		?>
 	</div><!-- .entry-content -->
 
