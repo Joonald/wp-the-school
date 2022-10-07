@@ -18,6 +18,7 @@
 .site-main {
 	grid-area: main;
 	overflow: hidden; /* Resolves issue with <pre> elements forcing full width. */
+	padding: 0 1rem;
 }
 
 .widget-area {
@@ -28,4 +29,3 @@
 	grid-area: footer;
 }
 
-@import "no-sidebar";
