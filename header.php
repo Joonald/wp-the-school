@@ -25,7 +25,7 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'wp-the-school' ); ?></a>
 
-	<header id="masthead" class="site-header">
+	<header id="masthead" class="site-header top-nav">
 		<div class="site-branding">
 			<?php
 			the_custom_logo();
@@ -46,7 +46,10 @@
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'wp-the-school' ); ?></button>
+			<button id="menu-toggle"class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+			<span class="screen-reader-text"><?php esc_html_e( 'Menu', 'fwd' ); ?></span>
+			<div class='menu-button'></div>
+			</button>
 			<?php
 			wp_nav_menu(
 				array(
