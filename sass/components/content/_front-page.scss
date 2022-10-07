@@ -1,0 +1,14 @@
+.home .blog-post article {
+    max-width: 300px;
+    margin: 0 auto;
+}
+@media only screen and (min-width: 800px) {
+    .home .blog-post {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .home .blog-post h2 {
+        width: 100%;
+    }
+  }
